@@ -13,7 +13,7 @@ const api =({ dispatch }: any) =>(next: any) => async (action: any) => {
 
     try {
       const response = await axios.request({
-        baseURL: "http://localhost:5000/api",
+        baseURL: `${process.env.REACT_APP_BACKEND_URL}/api`,
         url,
         method,
         data,

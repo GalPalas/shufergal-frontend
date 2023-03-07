@@ -42,16 +42,19 @@ const Placeorder = () => {
   const placeOrderHandler = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.post("http://localhost:5000/api/orders", {
-        userId: currentUser._id,
-        orderItems: cartItems,
-        shippingAddress,
-        paymentMethod,
-        itemsPrice,
-        shippingPrice,
-        taxPrice,
-        totalPrice,
-      });
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/orders`,
+        {
+          userId: currentUser._id,
+          orderItems: cartItems,
+          shippingAddress,
+          paymentMethod,
+          itemsPrice,
+          shippingPrice,
+          taxPrice,
+          totalPrice,
+        }
+      );
       setLoading(false);
       dispatch(cartClearItems);
       navigate(`/order/${data._id}`);

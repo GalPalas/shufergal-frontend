@@ -71,7 +71,7 @@ const Order = () => {
       try {
         dispatch(paymentRequested);
         const { data } = await axios.put(
-          `http://localhost:5000/api/orders/${_id}/pay`,
+          `${process.env.REACT_APP_BACKEND_URL}/api/orders/${_id}/pay`,
           details
         );
         console.log(data.order);
