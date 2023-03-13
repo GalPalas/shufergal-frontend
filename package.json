@@ -31,11 +31,11 @@
   },
   "scripts": {
     "start:dev": "env-cmd -e development react-scripts start",
-    "build:dev": "env-cmd -e development react-scripts build",
+    "build:dev": "npm install -g env-cmd && env-cmd -e development react-scripts build",
     "test:dev": "env-cmd -e development react-scripts test",
     "eject:dev": "env-cmd -e development react-scripts eject",
     "start:prod": "env-cmd -e production react-scripts start",
-    "build:prod": "env-cmd -e production react-scripts build",
+    "build:prod": "npm install -g env-cmd && env-cmd -e production react-scripts build",
     "test:prod": "env-cmd -e production react-scripts test",
     "eject:prod": "env-cmd -e production react-scripts eject"
   },
