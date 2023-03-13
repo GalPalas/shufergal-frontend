@@ -19,7 +19,7 @@ import FilterPrice from "./FilterPrice";
 // import ProductsGrid from "components/ProductsGrid";
 
 const Products = () => {
-  const [pageSize] = useState<number>(4);
+  const [pageSize] = useState<number>(8);
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);

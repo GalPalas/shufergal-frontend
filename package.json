@@ -30,10 +30,14 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start:dev": "env-cmd -e development react-scripts start",
+    "build:dev": "env-cmd -e development react-scripts build",
+    "test:dev": "env-cmd -e development react-scripts test",
+    "eject:dev": "env-cmd -e development react-scripts eject",
+    "start:prod": "env-cmd -e production react-scripts start",
+    "build:prod": "env-cmd -e production react-scripts build",
+    "test:prod": "env-cmd -e production react-scripts test",
+    "eject:prod": "env-cmd -e production react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

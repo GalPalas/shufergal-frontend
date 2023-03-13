@@ -79,7 +79,9 @@ const ProductItem = ({ details, handleLike }: ProductProps) => {
       </div>
       <div className="flex flex-col p-2">
         <p className="text-lg font-bold">{formatCurrency(price!)}</p>
-        <p className="text-md text-slate-500">{name}</p>
+        <p className="text-md text-slate-500">
+          {name?.substring(0, 50).concat("...")}
+        </p>
       </div>
       <div className="mt-auto flex justify-center">
         {quantity === 0 ? (
