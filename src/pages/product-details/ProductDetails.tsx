@@ -1,17 +1,29 @@
-import { products } from "data/fakeProductService";
 import Layout from "components/common/Layout";
 import { Product } from "types";
-import { formatCurrency } from "utilities/formatCurrency";
+import { useState } from "react";
 import { useParams } from "react-router";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, CartState, cartState } from "store/slices/cartSlice";
+import useFetchProducts from "pages/product-details/hooks/useFetchProducts";
+import {
+  InfoModal,
+  ImageSlider,
+  ProductIntroduction,
+  ProductInfo,
+  ProductDelivery,
+  ProductRetention,
+} from "pages/product-details/components";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cart: CartState = useSelector(cartState);
+
+  const { products } = useFetchProducts();
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [productImage, setProductImage] = useState<string>();
 
   const product: any = products.find((p: any) => p._id === id)!;
   if (!product) return <div>Product Not Found</div>;
@@ -39,34 +51,31 @@ const ProductDetails = () => {
         </Link>
       </div>
       <div className="grid md:grid-cols-3 md:gap-3">
-        <div className="md:col-span-2">
-          <img src={product.image} alt={product.name} />
-        </div>
-        <div className="hidden relative mb-5 rounded-lg border border-gray-200 shadow-md p-5 md:block">
-          <div className="absolute top-10 p-3">
-            <div className="mt-4 text-xl font-semibold">{product.name}</div>
-            <div className="flex flex-col mt-4">
-              <div className="flex justify-between mb-2 text-lg font-semibold">
-                <div>Price</div>
-                <div className="mr-2">{formatCurrency(product.price!)}</div>
-              </div>
-              <div className="flex justify-between mb-2 text-lg font-semibold">
-                <div>Status</div>
-                <div className="mr-2">
-                  {product.numberInStock! > 0 ? "In Stock" : "Unavailable"}
-                </div>
-              </div>
+        <div className="md:col-span-2 p-3">
+          <div className="grid md:grid-cols-3 md:gap-2">
+            <ImageSlider
+              product={product}
+              onClickProductImage={(image: string) => setProductImage(image)}
+            />
+            <div className="md:col-span-2">
+              <ProductIntroduction
+                product={product}
+                productImage={productImage!}
+              />
             </div>
-            <button
-              type="button"
-              className="button w-full mt-2 bg-red-700 text-white"
-              onClick={addToCartHandler}
-            >
-              Add to cart
-            </button>
           </div>
         </div>
+        <div className="hidden relative mb-5 rounded-lg border border-gray-200 shadow-md p-5 md:block">
+          <ProductInfo
+            product={product}
+            onOpen={() => setShowModal(true)}
+            onAddProductToCart={addToCartHandler}
+          />
+          <ProductDelivery />
+          <ProductRetention />
+        </div>
       </div>
+      <InfoModal isVisible={showModal} onClose={() => setShowModal(false)} />
     </Layout>
   );
 };

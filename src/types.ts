@@ -20,6 +20,7 @@ export type Product = {
   description?: string;
   numberInStock?: number;
   liked?: boolean;
+  images?: Array<string>;
 };
 
 export type Category = {

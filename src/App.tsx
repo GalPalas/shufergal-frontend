@@ -11,7 +11,7 @@ import {
   OrderHistory,
 } from "pages";
 import Navbar from "components/common/Navbar";
-import ProductDetails from "components/ProductDetails";
+import ProductDetails from "pages/product-details/ProductDetails";
 import ProtectedRoute from "components/common/ProtectedRoute";
 
 const App = () => {

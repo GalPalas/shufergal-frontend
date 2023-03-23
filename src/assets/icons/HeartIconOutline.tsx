@@ -1,5 +1,5 @@
 type HeartIconOutlineProps = {
-  onLikeToggle: () => void;
+  onLikeToggle?: () => void;
 };
 
 const HeartIconOutline = ({ onLikeToggle }: HeartIconOutlineProps) => {
@@ -10,7 +10,7 @@ const HeartIconOutline = ({ onLikeToggle }: HeartIconOutlineProps) => {
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
-      className="w-6 h-6 text-red-700"
+      className="w-6 h-6"
       onClick={onLikeToggle}
     >
       <path
